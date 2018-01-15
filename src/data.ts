@@ -2,7 +2,7 @@ export function getDates() {
     let prevDate = new Date();
     const arr = [];
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 100; i++) {
         const newDate = new Date(prevDate.getTime());
         const random = Math.floor(Math.random() * 5) + 1;
         newDate.setHours(newDate.getHours() + random);
