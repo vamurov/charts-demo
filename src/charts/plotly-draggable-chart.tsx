@@ -6,6 +6,8 @@ import { getDates, getValues } from '../data';
 
 const PlotlyComponent = createPlotlyComponent(Plotly);
 class PlotlyDraggableChart extends React.Component {
+  // tslint:disable-next-line:no-any
+  data: any;
   render() {
     const dates = [...getDates()];
 
@@ -39,7 +41,8 @@ class PlotlyDraggableChart extends React.Component {
       hoverinfo: 'none'
     };
 
-    var data = [trace1, trace5];
+    this.data = [trace1, trace5];
+    let data = this.data;
 
     var layout = {
       title: 'Plotly draggable points',
@@ -71,6 +74,8 @@ class PlotlyDraggableChart extends React.Component {
   }
 
   componentDidMount() {
+    // tslint:disable-next-line:no-any
+    var figurecontainer = document.getElementById('figurecontainer') as any;
     var d3 = Plotly.d3;
     var drag = d3.behavior.drag();
     drag.origin(function () {
@@ -86,26 +91,53 @@ class PlotlyDraggableChart extends React.Component {
       //   // destroyHandle(points[0].handle);
       // }
     });
-    drag.on('drag', function () {
+
+    function clamp(x: number, lower: number, upper: number) {
+      return Math.max(lower, Math.min(x, upper));
+    }
+
+    let that = this;
+    // tslint:disable-next-line:no-any
+    drag.on('drag', function (t: any) {
       // tslint:disable-next-line:no-console
-      console.log('drag');
+      // console.log('drag');
       var xmouse = d3.event.x, ymouse = d3.event.y;
       // tslint:disable-next-line:no-console
-      console.log(`mouse: ${xmouse}-${ymouse}`);
+      // console.log(`mouse: ${xmouse}-${ymouse}`);
       // d3.select(this).attr('transform', 'translate(' + [xmouse, ymouse] + ')');
       // var xaxis = figurecontainer._fullLayout.xaxis;
-      // var yaxis = figurecontainer._fullLayout.yaxis;
+      var yaxis = figurecontainer!._fullLayout!.yaxis;
       // var handle = this.handle;
       // // if (handle.type != 'endpoint') handle.x = clamp(xaxis.p2l(xmouse), xaxis.range[0], xaxis.range[1] - 1e-9);
       // if (handle.type === 'spawn' && handle.x > handles[1].x) {
       //   handle.type = 'normal';
       // }
-      // handle.y = clamp(yaxis.p2l(ymouse), yaxis.range[0], yaxis.range[1]);
+      const y = clamp(yaxis.p2l(ymouse), yaxis.range[0], yaxis.range[1]);
       // // if (handle.x < firstx) {    // release from the interpolation if dragged beyond the leftmost breakpoint
       // //     handle.type = 'spawn';
       // //     trash.style.fill = "#a00";
       // // }
       // updateFigure();
+      // tslint:disable-next-line:no-console
+      // tslint:disable-next-line:no-console
+
+      // tslint:disable-next-line:no-console
+      console.log(t);
+
+      const newY = [...that.data[0].y];
+      newY[1] = y;
+
+      // tslint:disable-next-line:no-console
+      console.log(newY[1]);
+
+      Plotly.restyle(
+        figurecontainer,
+        {
+          'x': [that.data[0].x, that.data[0].x],
+          'y': [that.data[0].y, newY]
+        });
+
+      that.data[0].y = newY;
     });
     drag.on('dragend', function () {
       // tslint:disable-next-line:no-console
