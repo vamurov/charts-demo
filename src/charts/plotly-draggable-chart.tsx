@@ -10,23 +10,20 @@ class PlotlyDraggableChart extends React.Component {
   data: any;
   render() {
     const dates = [...getDates()];
+    const values = [...getValues()];
 
     var trace1 = {
       type: 'scatter',
-      mode: 'lines+markers',
+      mode: 'lines',
       name: 'AAPL High',
       x: dates,
-      y: [...getValues()],
+      y: values,
       line: { color: '#17BECF' },
-      marker: {
-        symbol: 'circle-open-dot',
-        size: 25
-      }
     };
 
     var trace5 = {
       x: dates,
-      y: [...getValues()],
+      y: values,
       type: 'scatter',
       cliponaxis: false,
       mode: 'markers',
