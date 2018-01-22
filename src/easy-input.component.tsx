@@ -4,13 +4,13 @@ export class EasyInput extends React.Component {
     render() {
 
         return (
-            <div style={{ width: '100px' }}>
+            <div style={{ width: '110px' }}>
                 <div className="input-group" style={{ width: '100%' }}>
                     <span className="input-group-btn">
                         <Button
                             type="button"
                             bsSize="xsmall"
-                            className="btn btn-danger btn-number"
+                            className="btn btn-number"
                         >
                             <span className="glyphicon glyphicon-minus" />
                         </Button>
@@ -25,7 +25,7 @@ export class EasyInput extends React.Component {
                         <Button
                             type="button"
                             bsSize="xsmall"
-                            className="btn btn-success btn-number"
+                            className="btn btn-number"
                         >
                             <span className="glyphicon glyphicon-plus" />
                         </Button>
