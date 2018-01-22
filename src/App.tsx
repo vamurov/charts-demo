@@ -1,6 +1,7 @@
 import HighchartsChart from './charts/highcharts-chart';
 import PlotlyChart from './charts/plotly-chart';
 import PlottyDraggableChart from './charts/plotly-draggable-chart';
+import { EasyInput } from './easy-input.component';
 
 import * as React from 'react';
 import { BrowserRouter } from 'react-router-dom';
@@ -18,6 +19,7 @@ class App extends React.Component {
             <Route path="/plotly" component={PlotlyChart} />
             <Route path="/plotlydraggable" component={PlottyDraggableChart} />
             <Route path="/highcharts" component={HighchartsChart} />
+            <Route path="/input" component={EasyInput} />
 
           </Switch>
         </div>

@@ -98,7 +98,7 @@ class PlotlyDraggableChart extends React.Component {
     drag.on('drag', function (t: any) {
       // tslint:disable-next-line:no-console
       // console.log('drag');
-      var xmouse = d3.event.x, ymouse = d3.event.y;
+      var ymouse = d3.event.y;
       // tslint:disable-next-line:no-console
       // console.log(`mouse: ${xmouse}-${ymouse}`);
       // d3.select(this).attr('transform', 'translate(' + [xmouse, ymouse] + ')');
