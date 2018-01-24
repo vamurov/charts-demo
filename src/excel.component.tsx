@@ -74,6 +74,7 @@ export class Excel extends React.Component<{}, State> {
                         minHeight={500}
                         onGridRowsUpdated={this.handleGridRowsUpdated}
                         onGridSort={this.handleGridSort}
+                        cellNavigationMode="changeRow"
                     />
                 </FlipMove>
             </div>);
