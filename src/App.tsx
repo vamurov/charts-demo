@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Route, Switch } from 'react-router';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import { Layout } from './layout-component';
 
 class App extends React.Component {
   render() {
@@ -22,6 +23,7 @@ class App extends React.Component {
             <Route path="/highcharts" component={HighchartsChart} />
             <Route path="/input" component={EasyInput} />
             <Route path="/excel" component={Excel} />
+            <Route path="/layout" component={Layout} />
 
           </Switch>
         </div>
